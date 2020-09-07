@@ -15,6 +15,7 @@
     <version>0.2</version>
 	
     <modules>
+        <module>archive-metadata</module>
         <module>tika-metadata</module>
         <module>audio-metadata</module>
         <module>document-metadata</module>

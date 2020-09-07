@@ -18,6 +18,7 @@
 		<module>mock-processor</module>
 		<module>identify-mimetype</module>
 		<module>identify-form</module>
+		<module>extract-archive-metadata</module>
 		<module>extract-tika-metadata</module>
 		<module>extract-audio-metadata</module>
 		<module>extract-document-metadata</module>

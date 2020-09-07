@@ -1,4 +1,5 @@
 .idea/
 *.iml
 target/
-mock*/
+dependency-reduced-pom.xml
+mock_data_*/

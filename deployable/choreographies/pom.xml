@@ -18,6 +18,7 @@
 		<module>aws-choreography</module>
 		<module>aws-choreography-tests</module>
 		<module>identify-object</module>
+		<module>ingest-archive</module>
 		<module>ingest-audio</module>
 		<module>ingest-document</module>
 		<module>ingest-email</module>

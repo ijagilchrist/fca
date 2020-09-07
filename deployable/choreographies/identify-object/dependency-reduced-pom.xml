@@ -29,11 +29,16 @@
                   <mainClass>org.fca.choreographies.IdentifyObject</mainClass>
                 </transformer>
               </transformers>
-              <artifactSet>
-                <excludes>META-INF/*.SF</excludes>
-                <excludes>META-INF/*.DSA</excludes>
-                <excludes>META-INF/*.RSA</excludes>
-              </artifactSet>
+              <filters>
+                <filter>
+                  <artifact>*:*</artifact>
+                  <excludes>
+                    <exclude>META-INF/*.SF</exclude>
+                    <exclude>META-INF/*.DSA</exclude>
+                    <exclude>META-INF/*.RSA</exclude>
+                  </excludes>
+                </filter>
+              </filters>
             </configuration>
           </execution>
         </executions>
