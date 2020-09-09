@@ -8,6 +8,7 @@ import org.apache.tika.parser.ParseContext;
 import org.apache.tika.parser.Parser;
 import org.apache.tika.sax.BodyContentHandler;
 import org.fca.microformats.MicroFormat;
+import org.fca.microformats.content.TextContent;
 import org.fca.microformats.metadata.TikaMetadata;
 import org.fca.microformats.object.IdentifiedObject;
 import org.fca.processor.Context;
@@ -78,6 +79,15 @@ public class ExtractTikaMetadata implements Processor {
                     this.extractMetadata(metadata,tikaMetadata);
 
                     updates.add(tikaMetadata.build());
+
+                    String text = handler.toString();
+                    if (text != null && text.trim().length() > 0) {
+                        TextContent textContent = TextContent.builder()
+                                .setMicroFormatUUID(UUID.randomUUID().toString())
+                                .setValue(text)
+                                .build();
+                        updates.add(textContent);
+                    }
 
                     stream.close();
 

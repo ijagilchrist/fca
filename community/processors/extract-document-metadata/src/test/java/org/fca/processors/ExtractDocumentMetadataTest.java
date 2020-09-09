@@ -2,6 +2,7 @@ package org.fca.processors;
 
 import org.fca.forms.DocumentForms;
 import org.fca.microformats.MicroFormat;
+import org.fca.microformats.content.TextContent;
 import org.fca.microformats.metadata.DocumentMetadata;
 import org.fca.microformats.metadata.TikaMetadata;
 import org.fca.microformats.object.IdentifiedObject;
@@ -71,11 +72,12 @@ public class ExtractDocumentMetadataTest {
 
         List<MicroFormat> testOutput = testProcessor.process(context,inputObject);
 
-        assertEquals(2,testOutput.size());
+        assertEquals(3,testOutput.size());
         assertTrue(testOutput.get(0) instanceof TikaMetadata);
-        assertTrue(testOutput.get(1) instanceof DocumentMetadata);
+        assertTrue(testOutput.get(1) instanceof TextContent);
+        assertTrue(testOutput.get(2) instanceof DocumentMetadata);
 
-        DocumentMetadata metadata = (DocumentMetadata)testOutput.get(1);
+        DocumentMetadata metadata = (DocumentMetadata)testOutput.get(2);
 
         assertEquals(0,metadata.getEmbedded().size(),"embedded");
 
@@ -104,11 +106,12 @@ public class ExtractDocumentMetadataTest {
 
         List<MicroFormat> testOutput = testProcessor.process(context,inputObject);
 
-        assertEquals(2,testOutput.size());
+        assertEquals(3,testOutput.size());
         assertTrue(testOutput.get(0) instanceof TikaMetadata);
-        assertTrue(testOutput.get(1) instanceof DocumentMetadata);
+        assertTrue(testOutput.get(1) instanceof TextContent);
+        assertTrue(testOutput.get(2) instanceof DocumentMetadata);
 
-        DocumentMetadata metadata = (DocumentMetadata)testOutput.get(1);
+        DocumentMetadata metadata = (DocumentMetadata)testOutput.get(2);
 
         assertEquals(0,metadata.getEmbedded().size(),"embedded");
 

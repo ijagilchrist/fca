@@ -2,6 +2,7 @@ package org.fca.processors;
 
 import org.fca.forms.ImageForms;
 import org.fca.microformats.MicroFormat;
+import org.fca.microformats.content.TextContent;
 import org.fca.microformats.metadata.ImageMetadata;
 import org.fca.microformats.metadata.TikaMetadata;
 import org.fca.microformats.object.IdentifiedObject;

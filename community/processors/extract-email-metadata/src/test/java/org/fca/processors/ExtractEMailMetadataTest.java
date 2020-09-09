@@ -2,6 +2,7 @@ package org.fca.processors;
 
 import org.fca.forms.EMailForms;
 import org.fca.microformats.MicroFormat;
+import org.fca.microformats.content.TextContent;
 import org.fca.microformats.metadata.EMailMetadata;
 import org.fca.microformats.metadata.TikaMetadata;
 import org.fca.microformats.object.IdentifiedObject;
@@ -38,11 +39,12 @@ public class ExtractEMailMetadataTest {
 
         List<MicroFormat> testOutput = testProcessor.process(context,inputObject);
 
-        assertEquals(2,testOutput.size());
+        assertEquals(3,testOutput.size());
         assertTrue(testOutput.get(0) instanceof TikaMetadata);
-        assertTrue(testOutput.get(1) instanceof EMailMetadata);
+        assertTrue(testOutput.get(1) instanceof TextContent);
+        assertTrue(testOutput.get(2) instanceof EMailMetadata);
 
-        EMailMetadata metadata = (EMailMetadata)testOutput.get(1);
+        EMailMetadata metadata = (EMailMetadata)testOutput.get(2);
 
         assertEquals(1,metadata.getAttachments().size(),"attachments");
 
@@ -71,11 +73,12 @@ public class ExtractEMailMetadataTest {
 
         List<MicroFormat> testOutput = testProcessor.process(context,inputObject);
 
-        assertEquals(2,testOutput.size());
+        assertEquals(3,testOutput.size());
         assertTrue(testOutput.get(0) instanceof TikaMetadata);
-        assertTrue(testOutput.get(1) instanceof EMailMetadata);
+        assertTrue(testOutput.get(1) instanceof TextContent);
+        assertTrue(testOutput.get(2) instanceof EMailMetadata);
 
-        EMailMetadata metadata = (EMailMetadata)testOutput.get(1);
+        EMailMetadata metadata = (EMailMetadata)testOutput.get(2);
 
         assertEquals(0,metadata.getAttachments().size(),"attachments");
 

@@ -61,10 +61,16 @@ public class ArchiveMetadata extends MicroFormat {
             return this;
         }
 
+        public Builder addFolder(String path) {
+            this.root.addFolder(path);
+            return this;
+        }
+
         public Builder addItem(String path, String itemUUID) {
             this.root.addItem(path,itemUUID);
             return this;
         }
+
         public Builder of(ArchiveMetadata archiveMetadata) {
             this.microFormatUUID = archiveMetadata.microFormatUUID;
             this.root = archiveMetadata.root;

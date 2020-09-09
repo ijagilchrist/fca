@@ -37,6 +37,17 @@ public class Folder implements Comparable<Folder> {
         return items;
     }
 
+    public void addFolder(String path) {
+        String[] pathElements = path.split("/");
+        String folderName = pathElements[0];
+        if (!this.folders.containsKey(folderName)) this.folders.put(folderName,new Folder(folderName));
+        if (pathElements.length > 1) {
+            Folder folder = this.folders.get(folderName);
+            String subPath = path.substring(folderName.length()+1);
+            folder.addFolder(subPath);
+        }
+    }
+
     public void addItem(String path, String itemUUID) {
         String[] pathElements = path.split("/");
         if (pathElements.length > 1) {

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.fca.forms.AudioForms;
 import org.fca.microformats.MicroFormat;
+import org.fca.microformats.content.TextContent;
 import org.fca.microformats.metadata.AudioMetadata;
 import org.fca.microformats.metadata.TikaMetadata;
 import org.fca.microformats.object.IdentifiedObject;
@@ -40,9 +41,10 @@ public class ExtractAudioMetadataTest {
 
         List<MicroFormat> testOutput = testProcessor.process(context,inputObject);
 
-        assertEquals(2,testOutput.size());
+        assertEquals(3,testOutput.size());
         assertTrue(testOutput.get(0) instanceof TikaMetadata);
-        assertTrue(testOutput.get(1) instanceof AudioMetadata);
+        assertTrue(testOutput.get(1) instanceof TextContent);
+        assertTrue(testOutput.get(2) instanceof AudioMetadata);
 
         context.deleteContext();
 

@@ -56,14 +56,14 @@ public class ExtractZipMetadata implements Processor {
                     while (entry != null) {
 
                         if (entry.isDirectory()) {
-//                    this.addFile(entry,entry.getName(),null,contents,null,null);
+                            archiveMetadata.addFolder(entry.getName());
                         } else {
                             String creationDate = (entry.getCreationTime() != null) ? entry.getCreationTime().toString() : null;
                             String modificationDate = (entry.getLastModifiedTime() != null) ? entry.getLastModifiedTime().toString() : creationDate;
                             Map<String,String> headers = new HashMap<String,String>();
                             headers.put("Parent-UUID",context.getObjectUUID());
                             if (modificationDate != null) headers.put("Last-Modified",modificationDate);
-                            String itemUUID = context.putObject(zipStream,entry.getName(),headers);
+                            String itemUUID = context.putObject(zipStream,this.getItemName(entry.getName()),headers);
                             archiveMetadata.addItem(entry.getName(),itemUUID);
                         }
                         zipStream.closeEntry();
@@ -85,6 +85,11 @@ public class ExtractZipMetadata implements Processor {
 
         return updates;
 
+    }
+
+    private String getItemName(String path) {
+        String[] pathElements = path.split("/");
+        return pathElements[pathElements.length-1];
     }
 
     protected boolean isZipFile(String mimetype) {

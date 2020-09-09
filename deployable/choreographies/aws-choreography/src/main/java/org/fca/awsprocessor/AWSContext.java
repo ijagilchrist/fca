@@ -15,10 +15,7 @@ import org.fca.processor.Context;
 
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.util.*;
 
 @ParametersAreNonnullByDefault
@@ -87,7 +84,7 @@ public class AWSContext implements Context {
     @Override
     public String putObject(InputStream stream, String objectName, Map<String, String> objectMetadata) throws IOException {
         String objectUUID = String.format("%s-%s",this.objectUUID,UUID.randomUUID().toString().substring(0,6));
-        String key = String.format("%s/derived/%s",objectUUID,objectName);
+        String key = String.format("%s/object/%s",objectUUID,objectName);
         this.putObject(this.region,this.sourceBucket,key,stream,objectMetadata);
         return objectUUID;
     }
@@ -187,7 +184,12 @@ public class AWSContext implements Context {
                 .withRegion(region)
                 .build();
         ObjectMetadata metadata = toAWSHeaders(headers);
-        s3.putObject(bucket,key,stream,metadata);
+        // putObject closes the stream - but shouldn't
+        BufferedInputStream buffer = new BufferedInputStream(stream) {
+            @Override
+            public void close() throws IOException {}
+        };
+        s3.putObject(bucket,key,buffer,metadata);
 
     }
 

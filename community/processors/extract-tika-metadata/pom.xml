@@ -39,6 +39,11 @@
             <version>0.2</version>
         </dependency>
         <dependency>
+            <groupId>org.fca.community.microformats</groupId>
+            <artifactId>text-content</artifactId>
+            <version>0.2</version>
+        </dependency>
+        <dependency>
             <groupId>org.fca.community</groupId>
             <artifactId>core-forms</artifactId>
             <version>0.2</version>

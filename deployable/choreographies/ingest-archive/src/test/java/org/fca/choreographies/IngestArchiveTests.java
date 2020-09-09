@@ -92,7 +92,7 @@ public class IngestArchiveTests {
 
         choreography.stop();
 
-        tidyTest(awsChoreographyTests);
+//        tidyTest(awsChoreographyTests);
 
     }
 

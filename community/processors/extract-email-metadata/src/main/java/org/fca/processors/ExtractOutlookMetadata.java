@@ -44,7 +44,7 @@ public class ExtractOutlookMetadata extends ExtractTikaMetadata {
                     .setEMailMetadataBuilder(emailMetadata);
             updates = super.process(context,microFormat,extractor);
 
-            if (updates.size() == 1 && updates.get(0) instanceof TikaMetadata) {
+            if (updates.size() >= 1 && updates.get(0) instanceof TikaMetadata) {
 
                 this.extractMetadata((TikaMetadata)updates.get(0),emailMetadata);
                 updates.add(emailMetadata.build());

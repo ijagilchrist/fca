@@ -24,6 +24,7 @@
         <module>video-metadata</module>
         <module>audio-content</module>
         <module>video-content</module>
+        <module>text-content</module>
     </modules>
 
 </project>

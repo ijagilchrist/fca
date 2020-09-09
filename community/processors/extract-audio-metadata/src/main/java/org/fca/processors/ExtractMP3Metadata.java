@@ -35,7 +35,7 @@ public class ExtractMP3Metadata extends ExtractTikaMetadata {
 
             updates = super.process(context,microFormat);
 
-            if (updates.size() == 1 && updates.get(0) instanceof TikaMetadata) {
+            if (updates.size() >= 1 && updates.get(0) instanceof TikaMetadata) {
 
                 AudioMetadata.Builder audioMetadata = AudioMetadata.builder()
                         .setMicroFormatUUID(UUID.randomUUID().toString());
