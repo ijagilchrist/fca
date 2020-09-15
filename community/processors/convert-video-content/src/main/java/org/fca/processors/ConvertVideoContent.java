@@ -8,12 +8,11 @@ import org.fca.microformats.object.IdentifiedObject;
 import org.fca.processor.Context;
 import org.fca.processor.Processor;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.*;
 
 public class ConvertVideoContent implements Processor {
-
-    private final ConvertFFmpegContent videoConverter = new ConvertFFmpegContent(VideoForms.FORM_VIDEO,new String[]{ "-f","ogg" },"video/ogg");
-    private final ConvertFFmpegContent audioConverter = new ConvertFFmpegContent(VideoForms.FORM_VIDEO,new String[]{ "-ar","16000","-f","wav" },"audio/wav");
 
     public ConvertVideoContent() { }
 
@@ -40,28 +39,88 @@ public class ConvertVideoContent implements Processor {
 
         if (identifiedObject.getObjectForm().equals(VideoForms.FORM_VIDEO)) {
 
-            List<MicroFormat> videoConversion = this.videoConverter.process(context,identifiedObject);
+            {
 
-            if (videoConversion.size() == 1 && videoConversion.get(0) instanceof ConvertedMedia) {
+                Ffmpeg.Processor processor = new Ffmpeg(Arrays.asList(new String[]{ "-f","ogg" }))
+                        .newProcessor();
 
-                VideoContent videoContent = VideoContent.builder()
-                        .setMicroFormatUUID(UUID.randomUUID().toString())
-                        .setVideoType("OGG")
-                        .setVideoUUID(((ConvertedMedia)videoConversion.get(0)).getMediaUUID())
-                        .build();
-                updates.add(videoContent);
+                try {
+
+                    InputStream stream = context.getObject(identifiedObject.getObjectName());
+
+                    if (stream != null) {
+
+                        InputStream convertedStream = processor.process(stream);
+
+                        if (convertedStream != null) {
+
+                            String videoUUID = UUID.randomUUID().toString();
+
+                            Map<String,String> headers = new HashMap<>();
+                            headers.put("Content-Type","video/ogg");
+                            context.putDerivedObject(convertedStream,videoUUID,headers);
+
+                            VideoContent audioContent = VideoContent.builder()
+                                    .setMicroFormatUUID(UUID.randomUUID().toString())
+                                    .setVideoType("OGG")
+                                    .setVideoUUID(videoUUID)
+                                    .build();
+                            updates.add(audioContent);
+
+                        }
+
+                    }
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+                processor.close();
+
             }
 
-            List<MicroFormat> audioConversion = this.audioConverter.process(context,identifiedObject);
+            {
 
-            if (audioConversion.size() == 1 && audioConversion.get(0) instanceof ConvertedMedia) {
+                Ffmpeg.Processor processor = new Ffmpeg(Arrays.asList(new String[]{ "-ar","16000","-f","wav" }))
+                        .newProcessor();
 
-                AudioContent audioContent = AudioContent.builder()
-                        .setMicroFormatUUID(UUID.randomUUID().toString())
-                        .setAudioType("WAV")
-                        .setAudioUUID(((ConvertedMedia)audioConversion.get(0)).getMediaUUID())
-                        .build();
-                updates.add(audioContent);
+                try {
+
+                    InputStream stream = context.getObject(identifiedObject.getObjectName());
+
+                    if (stream != null) {
+
+                        InputStream convertedStream = processor.process(stream);
+
+                        if (convertedStream != null) {
+
+                            String audioUUID = UUID.randomUUID().toString();
+
+                            Map<String,String> headers = new HashMap<>();
+                            headers.put("Content-Type","audio/wav");
+                            context.putDerivedObject(convertedStream,audioUUID,headers);
+
+                            AudioContent audioContent = AudioContent.builder()
+                                    .setMicroFormatUUID(UUID.randomUUID().toString())
+                                    .setAudioType("WAV")
+                                    .setAudioUUID(audioUUID)
+                                    .build();
+                            updates.add(audioContent);
+
+                        }
+
+                    }
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+                processor.close();
+
             }
 
         }

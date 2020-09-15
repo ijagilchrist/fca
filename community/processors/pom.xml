@@ -15,6 +15,7 @@
     <version>0.2</version>
 
 	<modules>
+		<module>ocr-image-content</module>
 		<module>mock-processor</module>
 		<module>identify-mimetype</module>
 		<module>identify-form</module>
@@ -25,9 +26,16 @@
 		<module>extract-email-metadata</module>
 		<module>extract-image-metadata</module>
 		<module>extract-video-metadata</module>
-		<module>convert-ffmpeg-content</module>
+		<module>audio-processors</module>
 		<module>convert-audio-content</module>
 		<module>convert-video-content</module>
+		<module>language-detect-text</module>
+		<module>language-translation-text</module>
+		<module>language-translation-text-fr</module>
+		<module>language-translation-text-ru</module>
+		<module>language-detect-audio</module>
+		<module>language-stt-audio-en</module>
+		<module>language-stt-audio-ru</module>
 	</modules>
 	
 </project>

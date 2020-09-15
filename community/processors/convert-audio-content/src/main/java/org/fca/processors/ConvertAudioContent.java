@@ -5,14 +5,15 @@ import org.fca.microformats.MicroFormat;
 import org.fca.microformats.content.AudioContent;
 import org.fca.microformats.object.IdentifiedObject;
 import org.fca.processor.Context;
+import org.fca.processor.Processor;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.*;
 
-public class ConvertAudioContent extends ConvertFFmpegContent {
+public class ConvertAudioContent implements Processor {
 
-    public ConvertAudioContent() {
-        super(AudioForms.FORM_AUDIO,new String[]{ "-ar","16000","-f","wav" },"audio/wav");
-    }
+    public ConvertAudioContent() { }
 
     @Override
     public String getInputMicroFormatType() {
@@ -37,18 +38,43 @@ public class ConvertAudioContent extends ConvertFFmpegContent {
 
         if (identifiedObject.getObjectForm().equals(AudioForms.FORM_AUDIO)) {
 
-            List<MicroFormat> conversion = super.process(context,identifiedObject);
+            Ffmpeg.Processor processor = new Ffmpeg(Arrays.asList(new String[]{ "-ar","16000","-f","wav" }))
+                    .newProcessor();
 
-            if (conversion.size() == 1 && conversion.get(0) instanceof ConvertedMedia) {
+            try {
 
-                AudioContent audioContent = AudioContent.builder()
-                        .setMicroFormatUUID(UUID.randomUUID().toString())
-                        .setAudioType("WAV")
-                        .setAudioUUID(((ConvertedMedia)conversion.get(0)).getMediaUUID())
-                        .build();
-                updates.add(audioContent);
+                InputStream stream = context.getObject(identifiedObject.getObjectName());
 
+                if (stream != null) {
+
+                    InputStream convertedStream = processor.process(stream);
+
+                    if (convertedStream != null) {
+
+                        String audioUUID = UUID.randomUUID().toString();
+
+                        Map<String,String> headers = new HashMap<>();
+                        headers.put("Content-Type","audio/wav");
+                        context.putDerivedObject(convertedStream,audioUUID,headers);
+
+                        AudioContent audioContent = AudioContent.builder()
+                                .setMicroFormatUUID(UUID.randomUUID().toString())
+                                .setAudioType("WAV")
+                                .setAudioUUID(audioUUID)
+                                .build();
+                        updates.add(audioContent);
+
+                    }
+
+                }
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
+
+            processor.close();
 
         }
 

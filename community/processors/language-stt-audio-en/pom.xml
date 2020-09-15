@@ -10,7 +10,7 @@
     </properties>
 
     <groupId>org.fca.community.processors</groupId>
-    <artifactId>convert-video-content</artifactId>
+    <artifactId>language-stt-audio-en</artifactId>
     <version>0.2</version>
 
     <build>
@@ -45,17 +45,17 @@
         </dependency>
         <dependency>
             <groupId>org.fca.community</groupId>
-            <artifactId>video-forms</artifactId>
-            <version>0.2</version>
-        </dependency>
-        <dependency>
-            <groupId>org.fca.community.microformats</groupId>
-            <artifactId>video-content</artifactId>
+            <artifactId>audio-forms</artifactId>
             <version>0.2</version>
         </dependency>
         <dependency>
             <groupId>org.fca.community.microformats</groupId>
             <artifactId>audio-content</artifactId>
+            <version>0.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.fca.community.microformats</groupId>
+            <artifactId>text-content</artifactId>
             <version>0.2</version>
         </dependency>
         <dependency>

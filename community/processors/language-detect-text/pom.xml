@@ -10,7 +10,7 @@
     </properties>
 
     <groupId>org.fca.community.processors</groupId>
-    <artifactId>convert-video-content</artifactId>
+    <artifactId>language-detect-text</artifactId>
     <version>0.2</version>
 
     <build>
@@ -34,8 +34,8 @@
             <version>0.2</version>
         </dependency>
         <dependency>
-            <groupId>org.fca.community.processors</groupId>
-            <artifactId>audio-processors</artifactId>
+            <groupId>org.fca.community.microformats</groupId>
+            <artifactId>text-content</artifactId>
             <version>0.2</version>
         </dependency>
         <dependency>
@@ -44,24 +44,19 @@
             <version>0.2</version>
         </dependency>
         <dependency>
-            <groupId>org.fca.community</groupId>
-            <artifactId>video-forms</artifactId>
-            <version>0.2</version>
-        </dependency>
-        <dependency>
-            <groupId>org.fca.community.microformats</groupId>
-            <artifactId>video-content</artifactId>
-            <version>0.2</version>
-        </dependency>
-        <dependency>
-            <groupId>org.fca.community.microformats</groupId>
-            <artifactId>audio-content</artifactId>
-            <version>0.2</version>
-        </dependency>
-        <dependency>
             <groupId>com.google.code.findbugs</groupId>
             <artifactId>jsr305</artifactId>
             <version>3.0.2</version>
+        </dependency>
+        <dependency>
+            <groupId>com.optimaize.languagedetector</groupId>
+            <artifactId>language-detector</artifactId>
+            <version>0.6</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tika</groupId>
+            <artifactId>tika-langdetect</artifactId>
+            <version>1.23</version>
         </dependency>
         <dependency>
             <groupId>org.fca.core</groupId>

@@ -10,7 +10,7 @@
     </properties>
 
     <groupId>org.fca.community.processors</groupId>
-    <artifactId>convert-video-content</artifactId>
+    <artifactId>language-translation-text-fr</artifactId>
     <version>0.2</version>
 
     <build>
@@ -33,29 +33,14 @@
             <artifactId>processor</artifactId>
             <version>0.2</version>
         </dependency>
-        <dependency>
-            <groupId>org.fca.community.processors</groupId>
-            <artifactId>audio-processors</artifactId>
-            <version>0.2</version>
-        </dependency>
-        <dependency>
-            <groupId>org.fca.community</groupId>
-            <artifactId>core-forms</artifactId>
-            <version>0.2</version>
-        </dependency>
-        <dependency>
-            <groupId>org.fca.community</groupId>
-            <artifactId>video-forms</artifactId>
-            <version>0.2</version>
-        </dependency>
+		<dependency>
+			<groupId>org.fca.community.processors</groupId>
+			<artifactId>language-translation-text</artifactId>
+			<version>0.2</version>
+		</dependency>
         <dependency>
             <groupId>org.fca.community.microformats</groupId>
-            <artifactId>video-content</artifactId>
-            <version>0.2</version>
-        </dependency>
-        <dependency>
-            <groupId>org.fca.community.microformats</groupId>
-            <artifactId>audio-content</artifactId>
+            <artifactId>text-content</artifactId>
             <version>0.2</version>
         </dependency>
         <dependency>

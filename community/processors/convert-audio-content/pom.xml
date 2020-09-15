@@ -35,7 +35,7 @@
         </dependency>
         <dependency>
             <groupId>org.fca.community.processors</groupId>
-            <artifactId>convert-ffmpeg-content</artifactId>
+            <artifactId>audio-processors</artifactId>
             <version>0.2</version>
         </dependency>
         <dependency>
