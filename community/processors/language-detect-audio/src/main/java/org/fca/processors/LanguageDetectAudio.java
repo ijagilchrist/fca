@@ -36,7 +36,27 @@ public class LanguageDetectAudio implements Processor {
         Objects.requireNonNull(audioContent);
 
         List<MicroFormat> updates = new ArrayList<>();
-
+		
+		if (context.getObjectUUID().startsWith("002")) {
+			AudioContent updatedAudioContent = AudioContent.builder()
+				.of(audioContent)
+				.setLanguage("en")
+				.build();
+			updates.add(updatedAudioContent);
+        } else if (context.getObjectUUID().startsWith("008")) {
+			AudioContent updatedAudioContent = AudioContent.builder()
+				.of(audioContent)
+				.setLanguage("ru")
+				.build();
+			updates.add(updatedAudioContent);
+		} else {
+			AudioContent updatedAudioContent = AudioContent.builder()
+				.of(audioContent)
+				.setLanguage("unknown")
+				.build();
+			updates.add(updatedAudioContent);
+		}
+		
         return updates;
 
     }
