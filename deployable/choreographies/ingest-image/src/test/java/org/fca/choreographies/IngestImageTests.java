@@ -16,11 +16,14 @@ import java.util.List;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class IngestImageTests {
 
     @Test
     public void testJPEGChoreography() throws InterruptedException {
+
+        assertNotNull(System.getenv("TESSDATA_PREFIX"),"TESSDATA");
 
         String metadataTable = "org.fca.dynamodb.test.metadata";
         String registryTable = "org.fca.dynamodb.test.registry";

@@ -4,6 +4,7 @@ import org.fca.awschoreography.AWSChoreography;
 import org.fca.awsprocessor.AWSContext;
 import org.fca.choreography.Choreography;
 import org.fca.processors.ExtractJPGMetadata;
+import org.fca.processors.OCRImageContent;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
@@ -36,6 +37,7 @@ public class IngestImage implements Runnable {
 
         Choreography choreography = Choreography.builder()
                 .setInitialProcessor(new ExtractJPGMetadata())
+                .setProcessor(new OCRImageContent())
                 .build();
 
         this.awsChoreography = AWSChoreography.builder()
