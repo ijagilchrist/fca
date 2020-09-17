@@ -37,7 +37,7 @@ public abstract class LanguageTranslationText implements Processor {
 
         List<MicroFormat> updates = new ArrayList<>();
 
-        if (textContent.getLanguage().equals(this.language)) {
+        if (textContent.getLanguage().equals(this.language) && textContent.getTranslation() == null) {
 
             String translation = this.translate(textContent.getValue(),this.language);
 

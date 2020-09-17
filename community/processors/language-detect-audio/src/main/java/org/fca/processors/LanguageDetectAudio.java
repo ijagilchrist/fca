@@ -16,7 +16,7 @@ public class LanguageDetectAudio implements Processor {
 
     @Override
     public String getInputMicroFormatType() {
-        return new AudioContent().getQualifiedMicroFormatType();
+        return AudioContent.MICROFORMAT_TYPE;
     }
 
     @Override

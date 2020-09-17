@@ -24,6 +24,7 @@
 		<module>ingest-email</module>
 		<module>ingest-image</module>
 		<module>ingest-video</module>
+		<module>text-translation</module>
 	</modules>
 
 </project>

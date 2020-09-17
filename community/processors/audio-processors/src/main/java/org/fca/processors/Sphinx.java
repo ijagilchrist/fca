@@ -25,11 +25,11 @@ public class Sphinx {
         this.languageModel = languageModel;
     }
 
-    Sphinx.Processor newProcessor() {
+    public Sphinx.Processor newProcessor() {
         return new Sphinx.Processor();
     }
 
-    class Processor {
+    public class Processor {
 
         @Nonnull
         private File inputFile;

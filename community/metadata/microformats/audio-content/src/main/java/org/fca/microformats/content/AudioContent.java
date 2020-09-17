@@ -62,6 +62,13 @@ public class AudioContent extends MicroFormat {
         return language;
     }
 
+    @Override
+    public String getQualifiedMicroFormatType() {
+        return (this.language != null) ?
+                String.format("%s.%s",super.getMicroFormatType(),this.language) :
+                super.getMicroFormatType();
+    }
+
     public static Builder builder() {
         return new Builder();
     }

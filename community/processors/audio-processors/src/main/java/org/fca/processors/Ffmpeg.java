@@ -13,11 +13,11 @@ public class Ffmpeg {
         this.options = options;
     }
 
-    Processor newProcessor() {
+    public Ffmpeg.Processor newProcessor() {
         return new Processor();
     }
 
-    class Processor {
+    public class Processor {
 
         @Nonnull
         private File inputFile;
